@@ -1,0 +1,55 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\pemain;
+use GuzzleHttp\Promise\Create;
+use Illuminate\Http\Request;
+use Termwind\Components\Dd;
+
+class PemainController extends Controller
+{
+    public function index(Request $request){
+        if($request->has('search')){
+            $data = pemain::where('name','LIKE','%'.$request->search.'%')->paginate(5);
+        }else{
+            $pagination = 5;
+            $data = pemain::paginate($pagination);
+        }
+
+        return view('datapemain',compact('data'));
+    }
+
+    public function tambahpemain(){
+        return view('tambahdatapemain');
+    }
+
+    public function insertpemain(Request $request){
+        // Dd($request->all());
+        $data = pemain::create($request->all());
+        if($request->hasFile('foto')){
+            $request->file('foto')->move('fotopemain/', $request->file('foto')->getClientOriginalName());
+            $data->foto = $request->file('foto')->getClientOriginalName();
+            $data->save();
+        }
+        return redirect()->route('pemain')->with('success','Data berhasil ditambahkan');
+    }
+
+    public function tampilkandata($id){
+        $data = pemain::find($id);
+        // dd($data);
+        return view('editdatapemain',compact('data'));
+    }
+
+    public function updatedata(Request $request, $id){
+        $data = pemain::find($id);
+        $data->update($request->all());
+        return redirect()->route('pemain')->with('success','Data berhasil diubah');
+    }
+
+    public function deletedata($id){
+        $data = pemain::find($id);
+        $data->delete();
+        return redirect()->route('pemain')->with('success','Data berhasil dihapus');
+    }
+}
