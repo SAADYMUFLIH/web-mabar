@@ -12,6 +12,10 @@ class Game extends Model
     
         protected $guarded = [];
         protected $dates = ['created_at'];
-    
+        protected $table = 'games';
+        
+        protected function relationkepemain(){
+            return $this->belongsToMany(Pemain::class);
+        }
     
 }

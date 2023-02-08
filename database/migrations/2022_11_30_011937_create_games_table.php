@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('games', function (Blueprint $table) {
-            $table->id();
+            $table->id()->autoIncrement();
             $table->string('foto');
             $table->text('nama_game');
             $table->string('versi_game');

@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('dashboards', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('pemain_game', function (Blueprint $table) {
+            $table->unsignedBigInteger('game_id');
+            $table->foreign('game_id')->references('id')->on('games');
+            $table->unsignedBigInteger('pemain_id');
+            $table->foreign('pemain_id')->references('id')->on('pemains');
         });
     }
 
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dashboards');
+        Schema::dropIfExists('pemain_game');
     }
 };

@@ -14,12 +14,15 @@ class GameController extends Controller
             $pagination = 5;
             $data = Game::paginate($pagination);
         }
+        // $data = Game::withCount('games')->orderBy('name_game', 'asc')->paginate(10);
 
-        return view('games',compact('data'));
+        // $data = Game::count();
+        // $data = Game::where('id')->count(); 
+        return view('data_game.games',compact('data'));
     }
 
     public function tambahgames(){
-        return view('tambahgames');
+        return view('data_game.tambahgames');
     }
 
     public function insertgames(Request $request){
@@ -36,13 +39,13 @@ class GameController extends Controller
     public function tampilgames($id){
         $data = Game::find($id);
         // dd($data);
-        return view('tampilgames',compact('data'));
+        return view('data_game.tampilgames',compact('data'));
     }
 
     public function updategames(Request $request, $id){
         $data = Game::find($id);
         $data->update($request->all());
-        return redirect()->route('games')->with('success','Data berhasil diubah');
+        return redirect()->route('data_game.games')->with('success','Data berhasil diubah');
     }
 
     public function deletegames($id){

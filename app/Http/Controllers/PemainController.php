@@ -9,7 +9,7 @@ use Termwind\Components\Dd;
 
 class PemainController extends Controller
 {
-    public function index(Request $request){
+    public function pemain(Request $request){
         if($request->has('search')){
             $data = pemain::where('name','LIKE','%'.$request->search.'%')->paginate(5);
         }else{
@@ -17,11 +17,11 @@ class PemainController extends Controller
             $data = pemain::paginate($pagination);
         }
 
-        return view('datapemain',compact('data'));
+        return view('data_pemain.datapemain',compact('data'));
     }
 
     public function tambahpemain(){
-        return view('tambahdatapemain');
+        return view('data_pemain.tambahdatapemain');
     }
 
     public function insertpemain(Request $request){
@@ -38,7 +38,7 @@ class PemainController extends Controller
     public function tampilkandata($id){
         $data = pemain::find($id);
         // dd($data);
-        return view('editdatapemain',compact('data'));
+        return view('data_pemain.editdatapemain',compact('data'));
     }
 
     public function updatedata(Request $request, $id){

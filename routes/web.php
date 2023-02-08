@@ -25,8 +25,11 @@ Route::get('/', function () {
 //dashboard
 Route::get('/Dashboard',[DashboardController::class,'Dashboard'])->name('Dashboard');
 
+Route::get('/gamepemain',[DashboardController::class,'Gamepemain'])->name('Gamepemain');
+Route::post('/tambahgamepemain',[DashboardController::class,'Gamespem'])->name('Gamespem');
+
 //data pemain
-Route::get('/pemain',[PemainController::class, 'index'])->name('pemain');
+Route::get('/pemain',[PemainController::class, 'pemain'])->name('pemain');
 Route::get('/tambahpemain',[PemainController::class, 'tambahpemain'])->name('tambahpemain');
 Route::post('/insertpemain',[PemainController::class, 'insertpemain'])->name('insertpemain');
 Route::get('/tampilkandata/{id}',[PemainController::class, 'tampilkandata'])->name('tampilkandata');
