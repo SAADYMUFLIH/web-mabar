@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('username');
             $table->longText('keterangan');
+            $table->foreignId("game_id")->nullable();
             $table->timestamps();
         });
     }

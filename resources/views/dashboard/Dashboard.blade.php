@@ -112,16 +112,14 @@
               <th scope="col">Jumlah Pemain</th>
               <th scope="col">Aksi</th>
             </tr>
-            @foreach ($data as $myData)
             <tr>
-              <td>{{ $myData->game->nama_game }}</td>
-              <td>{{ $myData->pemain->name }}</td>
-              <td>{{ $myData->jumlah }}</td>
+              <td></td>
+              <td></td>
+              <td></td>
               <td>
                 <button  class="btn-2"> <a href='#'><iconify-icon icon="uil:trash"></iconify-icon></a></button>
               </td>
             </tr>
-            @endforeach
            </table>
         </div>
     </div>

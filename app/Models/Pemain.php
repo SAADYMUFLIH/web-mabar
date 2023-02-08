@@ -11,10 +11,6 @@ class Pemain extends Model
 
     protected $guarded = [];
     protected $dates = ['created_at'];
-    protected $table = 'pemains';
 
-    protected function relationkegame(){
-        return $this->belongsToMany(Game::class);
-    }
 
 }
